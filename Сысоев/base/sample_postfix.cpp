@@ -6,18 +6,29 @@ using namespace std;
 
 int main()
 {
-  string expression;
-  TPostfix postfix;
-  double res;
-
   setlocale(LC_ALL, "Russian");
-  //cout << "Введите арифметическое выражение: ";
-  //cin >> expression;
-  //cout << expression << endl;
+  string expression;
+  double res;
+  cout << "Введите арифметическое выражение: ";
+  getline(cin,expression);
+ 
+  TPostfix postfix(expression);
+
   cout << "Арифметическое выражение: " << postfix.GetInfix() << endl;
   postfix.ToPostfix();
   cout << "Постфиксная форма: " << postfix.GetPostfix() << endl;
-  res = postfix.Calculate();
+
+  double* values;
+  int CountVal = postfix.CountValue();
+  values = new double[CountVal];
+  cout << "Введите аргументы" << endl;
+  
+  for (int i = 0; i < CountVal; i++)
+  {
+	  cin >> values[i];
+  }
+  
+  res = postfix.Calculate(values);
   cout << res << endl;
 
   return 0;
