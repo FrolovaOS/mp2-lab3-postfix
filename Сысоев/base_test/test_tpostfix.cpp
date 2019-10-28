@@ -164,3 +164,22 @@ TEST(TPostfix, check_calculate6)
 
 	EXPECT_EQ(res, 2);
 }
+
+TEST(TPostfix, check_calculate7)
+{
+	TPostfix p("a + b * c / d - e + f");// 1+ 2 *3/ 4- 5 +6
+	p.ToPostfix();
+	double* values;
+	int CountVal = p.CountVal();
+	int CountLetter = p.CountLetter();
+	values = new double[CountLetter];
+
+	for (int i = 0; i < CountLetter; i++)
+	{
+		values[i] = i+1;
+	}
+	double res;
+	res = p.Calculate(values);
+
+	EXPECT_EQ(res, 3.5);
+}

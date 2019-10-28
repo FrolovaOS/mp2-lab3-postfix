@@ -90,8 +90,8 @@ double TPostfix::Calculate(double* _values)
 	TStack<double> values(CountVal());
 
 	int j = 0;
-	int val1;
-	int val2;
+	double val1;
+	double val2;
 
 	
 	int CV = CountVal();
