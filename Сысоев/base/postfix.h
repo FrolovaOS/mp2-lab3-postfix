@@ -20,7 +20,9 @@ public:
   double Calculate(double* _values); // Ввод переменных, вычисление по постфиксной форме
   int Priority(char tmp); // сравнение приоритета элементов
   int GetLen() { return infix.length(); } // получение длины инфиксной формы
-  int CountValue(); // подсчет количества значений 
+  int CountLetter(); // подсчет количества различных букв
+  int CountVal(); // подсчет количества значений 
+  string variables();
 };
 
 #endif

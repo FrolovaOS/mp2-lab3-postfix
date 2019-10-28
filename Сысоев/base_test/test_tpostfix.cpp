@@ -17,7 +17,7 @@ TEST(TPostfix, check_CountValue)
 {
 	TPostfix p("a+b*c");
 
-	EXPECT_EQ(3, p.CountValue());
+	EXPECT_EQ(3, p.CountLetter());
 }
 
 
@@ -51,15 +51,16 @@ TEST(TPostfix, check_postfix4)
 
 TEST(TPostfix, check_calculate1)
 {
-	TPostfix p("( ( ( a + b ) * c - d ) + h ) * s - n");
+	TPostfix p("( ( ( a + b ) * c - d ) + h ) * s - n"); 
 	p.ToPostfix();
 	double *values;
-	int CountVal = p.CountValue();
+	int CountVal = p.CountVal();
 	values = new double[CountVal];
 	int j = 1;
 	for (int i = 0; i < CountVal; i++)
 	{
 		values[i]=j++;
+		
 	}
 	int res;
 	res = p.Calculate(values);
@@ -73,7 +74,7 @@ TEST(TPostfix, check_calculate2)
 	TPostfix p("(a + b) * (c - d)");
 	p.ToPostfix();
 	double* values;
-	int CountVal = p.CountValue();
+	int CountVal = p.CountVal();
 	values = new double[CountVal];
 
 	for (int i = 0; i < CountVal; i++)
@@ -92,7 +93,7 @@ TEST(TPostfix, check_calculate3)
 	TPostfix p("a+b*(c-d)-e");
 	p.ToPostfix();
 	double* values;
-	int CountVal = p.CountValue();
+	int CountVal = p.CountVal();
 	values = new double[CountVal];
 
 	for (int i = 0; i < CountVal; i++)
@@ -111,7 +112,7 @@ TEST(TPostfix, check_calculate4)
 	TPostfix p("a + b * c");
 	p.ToPostfix();
 	double* values;
-	int CountVal = p.CountValue();
+	int CountVal = p.CountVal();
 	values = new double[CountVal];
 
 	for (int i = 0; i < CountVal; i++)
@@ -123,4 +124,43 @@ TEST(TPostfix, check_calculate4)
 
 
 	EXPECT_EQ(res, 7);
+}
+
+TEST(TPostfix, check_calculate5)
+{
+	TPostfix p("a + a * a");
+	p.ToPostfix();
+	double* values;
+	int CountVal = p.CountVal();
+	int CountLetter = p.CountLetter();
+	values = new double[CountLetter];
+
+	for (int i = 0; i < CountLetter; i++)
+	{
+		values[i] = 2;
+	}
+	int res;
+	res = p.Calculate(values);
+
+
+	EXPECT_EQ(res, 6);
+}
+
+TEST(TPostfix, check_calculate6)
+{
+	TPostfix p("a + b * c + a");
+	p.ToPostfix();
+	double* values;
+	int CountVal = p.CountVal();
+	int CountLetter = p.CountLetter();
+	values = new double[CountLetter];
+
+	for (int i = 0; i < CountLetter; i++)
+	{
+		values[i] = i;
+	}
+	int res;
+	res = p.Calculate(values);
+
+	EXPECT_EQ(res, 2);
 }

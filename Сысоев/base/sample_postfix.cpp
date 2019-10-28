@@ -19,15 +19,15 @@ int main()
   cout << "Постфиксная форма: " << postfix.GetPostfix() << endl;
 
   double* values;
-  int CountVal = postfix.CountValue();
-  values = new double[CountVal];
+  int tmp = postfix.CountLetter();
+  values = new double[tmp];
   cout << "Введите аргументы" << endl;
   
-  for (int i = 0; i < CountVal; i++)
+  for (int i = 0; i < tmp; i++)
   {
 	  cin >> values[i];
   }
-  
+
   res = postfix.Calculate(values);
   cout << res << endl;
 
